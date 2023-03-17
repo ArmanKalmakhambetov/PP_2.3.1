@@ -1,32 +1,22 @@
 package web.DAO;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 import web.model.User;
-
 import javax.persistence.EntityManager;
+import javax.persistence.EntityNotFoundException;
 import javax.persistence.PersistenceContext;
+
 import java.util.List;
 
 @Repository
-@Transactional
 public class UserDaoImp implements UserDao {
 
-    @Autowired
     @PersistenceContext
     private EntityManager entityManager;
 
     @Override
     public void saveUser(User user) {
         entityManager.persist(user);
-    }
-
-    @Override
-    public void add(String name, String lastname, byte age) {
-        if (!(name.length() == 0 && lastname.length() == 0)) {
-            entityManager.persist(new User(name, lastname, age));
-        }
     }
 
     @Override
@@ -38,6 +28,7 @@ public class UserDaoImp implements UserDao {
     @Override
     public void updateUser(User user) {
         entityManager.merge(user);
+
     }
 
     @Override
