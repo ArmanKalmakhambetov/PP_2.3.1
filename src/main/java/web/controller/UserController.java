@@ -45,7 +45,7 @@ public class UserController {
     }
 
     @PostMapping("/user/create")
-    public String newUser(Model model, @ModelAttribute("user") User user) {
+    public String createNewUser(Model model, @ModelAttribute("user") User user) {
         userService.saveUser(user);
         model.addAttribute("users", userService.getAllUsers());
 
@@ -84,6 +84,4 @@ public class UserController {
 
         return "users";
     }
-
-
 }
